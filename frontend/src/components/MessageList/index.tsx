@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react'
+import io from 'socket.io-client'
 import { api } from '../../services/api'
 
 import styles from './styles.module.scss'
-
 import logoImg from '../../assets/logo.svg'
-import { useEffect, useState } from 'react'
 
 type Message = {
   id: string;
@@ -14,8 +14,28 @@ type Message = {
   }
 }
 
+const messagesQueue: Message[] = [];
+
+const socket = io('http://localhost:4000');
+
+socket.on('new_message', newMessage => {
+  messagesQueue.push(newMessage)
+})
+
 export function MessageList() {
   const [messages, setMessages] = useState<Message[]>([])
+
+  useEffect(() => {
+    const timer = setInterval (() => {
+      if (messagesQueue.length > 0) {
+        setMessages ([
+          messagesQueue[0],
+          messages[0],
+          messages[1],
+        ].filter(Boolean)) //.filterBoolean filtra e remove os valores que são false (undefined, null, vazio...) 
+      }
+    }, 3000)
+  }, [])
 
   useEffect(() => {
     // chamada para a api
