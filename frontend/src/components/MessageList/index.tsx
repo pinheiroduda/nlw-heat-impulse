@@ -18,21 +18,23 @@ const messagesQueue: Message[] = [];
 
 const socket = io('http://localhost:4000');
 
-socket.on('new_message', newMessage => {
-  messagesQueue.push(newMessage)
+socket.on('new_message', (newMessage: Message) => {
+  messagesQueue.push(newMessage);
 })
 
 export function MessageList() {
   const [messages, setMessages] = useState<Message[]>([])
 
   useEffect(() => {
-    const timer = setInterval (() => {
+    setInterval (() => {
       if (messagesQueue.length > 0) {
-        setMessages ([
+        setMessages (prevState => [
           messagesQueue[0],
           messages[0],
           messages[1],
         ].filter(Boolean)) //.filterBoolean filtra e remove os valores que são false (undefined, null, vazio...) 
+
+        messagesQueue.shift();
       }
     }, 3000)
   }, [])
