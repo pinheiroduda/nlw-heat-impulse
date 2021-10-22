@@ -4,11 +4,11 @@ import { AuthContext } from '../../contexts/auth'
 import styles from './styles.module.scss'
 
 export function SendMessageForm() {
-  const { user } = useContext(AuthContext)
+  const { user, signOut } = useContext(AuthContext)
 
   return (
     <div className={styles.sendMessageFormWrapper}>
-      <button className={styles.signOutButton}>
+      <button onClick={signOut} className={styles.signOutButton}>
         <VscSignOut size="32"/>
       </button>
 
