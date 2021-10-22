@@ -46,6 +46,8 @@ export function AuthProvider(props: AuthProvider) {
 
     localStorage.setItem('@dowhile:token', token)
 
+    api.defaults.headers.common.authorization = `Bearer ${token}`
+
     setUser(user)
   }
 
@@ -58,8 +60,7 @@ export function AuthProvider(props: AuthProvider) {
     const token = localStorage.getItem('@dowhile:token')
 
     if(token) {
-      /* axios permite que o deafult headers seja setado e toda requisição dessa linha pra frente vá automaticamente
-      com o token de autenticação junto no header da requisição */
+      /* axios permite que o deafult headers seja setado e toda requisição dessa linha pra frente vá automaticamente com o token de autenticação junto no header da requisição */
       api.defaults.headers.common.authorization = `Bearer ${token}`
 
       api.get<User>('profile').then(response => {
