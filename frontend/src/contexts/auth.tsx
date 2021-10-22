@@ -31,7 +31,7 @@ type AuthResponse = {
 }
 
 export function AuthProvider(props: AuthProvider) {
-  const [user, setUSer] = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(null)
 
   const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=944e58d9fac9085b8458`
 
@@ -45,8 +45,22 @@ export function AuthProvider(props: AuthProvider) {
 
     localStorage.setItem('@dowhile:token', token)
 
-    setUSer(user)
+    setUser(user)
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem('@dowhile:token')
+
+    if(token) {
+      /* axios permite que o deafult headers seja setado e toda requisição dessa linha pra frente vá automaticamente
+      com o token de autenticação junto no header da requisição */
+      api.defaults.headers.common.authorization = `Bearer ${token}`
+
+      api.get<User>('profile').then(response => {
+        setUser(response.data)
+      })
+    }
+  }, [])
 
   useEffect(() => {
     const url = window.location.href;
