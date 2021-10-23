@@ -2,7 +2,8 @@ import React from 'react';
 
 import {
   View,
-  Text
+  Text,
+  TouchableOpacity
 } from 'react-native';
 
 import { styles } from './styles';
@@ -15,8 +16,9 @@ export function Header(){
     <View style={styles.container}>
       <LogoSvg />
 
-      <Text>Sair</Text>
-
+      <TouchableOpacity>
+        <Text style={styles.logoutText}>Sair</Text>
+      </TouchableOpacity>
     </View>
   );
 }
