@@ -15,7 +15,7 @@ export function Message(){
         Texto da mensagem
       </Text>
 
-      <View>
+      <View style={styles.footer}>
         <UserPhoto
         imageUri='https://github.com/pinheiroduda.png'
         sizes='SMALL'
