@@ -1,9 +1,11 @@
 import  React from 'react';
 import { View, Text } from 'react-native';
 
+import { styles } from './style';
+
 export function Home() {
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Olá!</Text>
     </View>
   )
