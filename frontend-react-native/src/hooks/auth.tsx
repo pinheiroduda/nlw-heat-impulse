@@ -24,6 +24,15 @@ function AuthProvider({ children }: AuthProviderProps) {
   const [isSigninIng, setIsSigningIng] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
+  async function signIn() {
+
+  }
+
+  async function signOut() {
+
+  }
+
+
   return (
     <AuthContext.Provider value ={{
       signIn,
@@ -36,3 +45,11 @@ function AuthProvider({ children }: AuthProviderProps) {
     
   )
 }
+
+function useAuth () {
+  const context = useContext(AuthContext);
+
+  return context;
+}
+
+export { AuthProvider, useAuth }
