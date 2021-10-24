@@ -18,15 +18,15 @@ export function SendMessageForm(){
 
   async function handleMessageSubmit() {
     const messageFormatted = message.trim();
-    await api.post('/messages', { message: messageFormatted });
-
-    setMessage('');
-    Keyboard.dismiss();
-    setSendingMessage(false);
-    Alert.alert('Mensagem enviada com sucesso!')
 
     if (messageFormatted.length > 0) {
       setSendingMessage(true);
+      await api.post('/messages', { message: messageFormatted });
+
+      setMessage('');
+      Keyboard.dismiss();
+      setSendingMessage(false);
+      Alert.alert('Mensagem enviada com sucesso!')
     } else {
       Alert.alert ('Escreva a mensagem para enviar.');
     }
