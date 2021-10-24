@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "teste",
-    "slug": "teste",
+    "name": "nlw-heat-impulse-mobile",
+    "slug": "nlw-heat-impulse-mobile",
     "version": "1.0.0",
+    "scheme": "nlw-heat-impulse-mobile",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

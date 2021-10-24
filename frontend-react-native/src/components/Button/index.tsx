@@ -10,7 +10,7 @@ import { AntDesign } from '@expo/vector-icons'
 
 import { styles } from './styles';
 
-type Props = {
+type Props = TouchableOpacityProps & {
   title: string;
   color: ColorValue;
   backgroundColor: ColorValue;
