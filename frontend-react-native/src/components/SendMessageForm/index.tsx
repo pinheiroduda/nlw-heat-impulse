@@ -12,7 +12,12 @@ import { styles } from './styles';
 export function SendMessageForm(){
   return (
     <View style={styles.container}>
-      <TextInput 
+      <TextInput
+        keyboardAppearance='dark'
+        placeholder='Qual a sua expectativa para o evento DoWhile?'
+        placeholderTextColor={COLORS.GRAY_PRIMARY}
+        multiline
+        maxLength={140}
         style={styles.input}
       />
 
